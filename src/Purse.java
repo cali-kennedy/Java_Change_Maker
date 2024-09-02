@@ -43,4 +43,15 @@ public class Purse {
                .sum();
    }
 
+    // Returns a string representation of the purse
+    @Override
+    public String toString() {
+        if (cash.isEmpty()) return "Empty Purse";
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
+            sb.append(entry.getValue()).append(" ").append(entry.getKey().name()).append("\n");
+        }
+        return sb.toString();
+    }
+
 }
