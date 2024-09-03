@@ -44,7 +44,6 @@ public class Purse {
    }
 
     // Returns a string representation of the purse
-    @Override
     public String toString() {
         if (cash.isEmpty()) return "Empty Purse";
         StringBuilder sb = new StringBuilder();
