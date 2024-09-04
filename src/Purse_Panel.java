@@ -30,6 +30,24 @@ public class Purse_Panel {
 
                String imagePath = denomination.img(); // Create the image path for the URL
                URL imageUrl = getClass().getResource(imagePath);  // Load the image from the resources folder
+
+               if (imageUrl == null) {
+                   System.err.println("Image not found for: " + denomination.name() + " at path: " + imagePath);
+                   continue;
+               }
+
+               try {
+                   ImageIcon icon = new ImageIcon(imageUrl);
+                   if (icon.getImageLoadStatus() != MediaTracker.COMPLETE) {
+                       System.err.println("Image failed to load completely for: " + denomination.name());
+                   }
+                   images.put(denomination.name(), icon.getImage());
+               } catch (Exception e) {
+                   System.err.println("Exception occurred while loading image for: " + denomination.name());
+                   e.printStackTrace();
+               }
+
+
                ImageIcon icon = new ImageIcon(imageUrl);  // Create an ImageIcon from the resource
                images.put(denomination.name(), icon.getImage());  // Store the image in the map
            }

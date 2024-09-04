@@ -10,7 +10,7 @@ public class Register {
             new Denomination("One Dollar Note", 1.00, Form.BILL, "one_note.png"),
             new Denomination("Quarter", 0.25, Form.COIN, "quarter.png"),
             new Denomination("Dime", 0.10, Form.COIN, "dime.png"),
-            new Denomination("Nickle", 0.05, Form.COIN, "nickle.png"),
+            new Denomination("Nickel", 0.05, Form.COIN, "nickel.png"),
             new Denomination("Penny", 0.01, Form.COIN, "penny.png")
     );
     public static List<Denomination> getDenominations() { // Denominations list Getter
@@ -45,7 +45,7 @@ public class Register {
         Scanner scan = new Scanner(System.in);
 
 
-        while (true) {
+        while (amount != -1) {
             System.out.print("Enter an amount: ");
             amount = scan.nextDouble();
             System.out.println("Making change for: $" + amount);
