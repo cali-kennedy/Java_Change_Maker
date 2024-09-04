@@ -1,19 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
-/*
----------- ASSIGNMENT NOTES ---------------
-    cash: Map<Denomination, int>   // represents the money in the purse
-	add(type: Denomination, num: int): void  // adds a number of a particular denomination
-    remove(type: Denomination, num: int): double //diminishes the money in the purse and returns that amount.
-	getValue(): double    // returns the amount of money in the Purse
-	toString(): String    // returns a string representation of the Purse and its contents
- */
+
 public class Purse {
     //Denomination is the key and Integer is the value representing
     //the count of that denomination in the purse.
-   private final Map<Denomination, Integer> cash = new HashMap<>();
-
+   private final Map<Denomination, Integer> cash = new HashMap<>(); // Hashmap to describe the *current* amt/type
+                                                                    // of money in the purse
    // Adds a specified number of denominations to the purse
    public void add(Denomination type, int num)
    {
@@ -37,20 +30,28 @@ public class Purse {
 
    public double getValue()
    {
-       // Maps each entry in the "cash" map to its monetary value and adds the total amount
+       // Maps each denomination in the 'cash' map to its monetary value and adds the total amount
        return cash.entrySet().stream()
-               .mapToDouble(entry -> entry.getKey().amt() * entry.getValue())
-               .sum();
+               .mapToDouble(entry -> entry.getKey().amt() * entry.getValue()) // Multiply denomination value by its count
+               .sum(); // Sum up all the individual values to get the total
    }
+
+   // Getter method for cash
+    public Map<Denomination, Integer> getCash() {
+        return cash;
+    }
 
     // Returns a string representation of the purse
     public String toString() {
         if (cash.isEmpty()) return "Empty Purse";
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) {
+        for (Map.Entry<Denomination, Integer> entry : cash.entrySet()) { // Iterate through the 'cash' map
+
+            // Append the count and the name of the denomination to the string.
             sb.append(entry.getValue()).append(" ").append(entry.getKey().name()).append("\n");
+            // Note: .getValue() is not the same function we created, here it retrieves a count not a sum
         }
-        return sb.toString();
+        return sb.toString(); // Return the string
     }
 
 }
