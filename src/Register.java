@@ -28,6 +28,8 @@ public class Register {
                 purse.add(denom, count); // Add the denomination and count to the purse
                 amt -= count * denom.amt(); // Subtract the total value of the added denomination from the -
                                             // - specified amount
+                amt = Math.round(amt * 100.0) / 100.0; // Round the amount to avoid float-point -
+                                                       // - rounding errors
             }
         }
         return purse;
